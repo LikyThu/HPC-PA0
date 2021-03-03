@@ -5,7 +5,13 @@
 #include <chrono>
 
 void pow_a(int *a, int *b, int n, int m, int comm_sz /* 总进程数 */) {
-    // TODO: 对这个进程拥有的数据计算 b[i] = a[i]^m
+    for (int i = 0; i < n / comm_sz; ++i) {
+        int tmp = 1;
+        for (int k = 0; k < m; ++k) {
+            tmp *= a[i];
+        }
+        b[i] = tmp;
+    }
 }
 
 int main(int argc, char** argv) {
